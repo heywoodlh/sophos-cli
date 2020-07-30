@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import argparse
 import requests
-import sys
 
 ## argparse arguments
 parser = argparse.ArgumentParser(description="Wrapper for Sophos Central's API")
