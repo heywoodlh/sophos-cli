@@ -12,6 +12,9 @@ subparsers = parser.add_subparsers(help='commands', dest='command')
 ## Events subparser
 parser_events = subparsers.add_parser('events', help='Retrieve sophos central event info')
 
+## Alerts subparser
+parser_events = subparsers.add_parser('alerts', help='Retrieve sophos central alert info')
+
 args = parser.parse_args()
 
 
@@ -20,13 +23,15 @@ def main():
     apikey = args.api
     authtoken = args.auth
 
-    headers = { 
-    'x-api-key': apikey, 
+    headers = {
+    'x-api-key': apikey,
     'Authorization': 'Basic ' + authtoken
     }
-    
+
     if args.command == 'events':
         gateway = gateway + '/siem/v1/events'
+    if args.command == 'alerts':
+        gateway = gateway + '/siem/v1/alerts'
     response = requests.get(gateway, headers=headers)
     print(response.text)
 
